@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de IMC</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        #imcForm {
+            padding: 20px;
+            background-color: #444;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="number"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="number"] {
+            background-color: #fff;
+            color: #333;
+        }
+        input[type="submit"] {
+            background-color: #ff7f00;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #ff5500;
+        }
+    </style>
+</head>
+<body>
+    <form id="imcForm">
+        <label for="altura">Altura (em metros): </label>
+        <input type="number" id="altura" step="0.01" min="0" required><br>
+        <label for="peso">Peso (em kg): </label>
+        <input type="number" id="peso" step="0.1" min="0" required><br>
+        <input type="submit" value="Calcular IMC">
+    </form>
+    <input id="result" type="text" readonly>
+    <script>
+        document.getElementById('imcForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var altura = document.getElementById('altura').value;
+            var peso = document.getElementById('peso').value;
+            var imc = peso / (altura * altura);
+            if (imc < 18) {
+                document.getElementById('result').value = "Você está em estado de magreza"
+            } else if (imc < 24) {
+                document.getElementById('result').value = "Você está em estado normal"
+            } else if (imc < 30) {
+                document.getElementById('result').value = "Você está com sobrepeso"
+            } else {
+                document.getElementById('result').value = "Você está em obesidade"
+            }
+        });
+    </script>
+</body>
+</html>
